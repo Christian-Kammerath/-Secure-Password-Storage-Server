@@ -28,6 +28,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const config = __importStar(require("./appSettings/config.json"));
+const commandLineParser_1 = require("./commandLineParser");
+const args = new commandLineParser_1.CommandLineParser(process.argv);
+console.log(args.WithNewDatabase);
 const app = (0, express_1.default)();
 const port = config.server.port;
 app.listen(port, () => {
