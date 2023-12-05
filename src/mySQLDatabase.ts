@@ -18,13 +18,13 @@ export function ConecteDatabase(hostName:string,userName:string,passwordString:s
     });
 }
 
-export function CreateDatabase(hostName:string,userName:string,passwordString:string,databaseName:String)
+export function CreateDatabase(hostName:string,userName:string,passwordString:string,databaseName:String,portNumber:number)
 {
     const connection = mysql.createConnection({
         host: hostName,
         user: userName,
         password: passwordString,
-        port: 3306,
+        port: portNumber,
         insecureAuth: true
     });
 
