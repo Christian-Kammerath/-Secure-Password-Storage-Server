@@ -16,7 +16,10 @@ export class CommandLineParser{
 
         if(argv.n){
             this.WithNewDatabase = argv.n;
-            this.NewDatabase = argv.nd
+            this.NewDatabase = argv.nd;
+            this.DatabaseUrl = argv.edu;
+            this.DatabaseUser = argv.edus;
+            this.DatabasePassword =argv.edp;
         }
         else if(argv.c){
             this.ConnectExistingDatabase = argv.c;
