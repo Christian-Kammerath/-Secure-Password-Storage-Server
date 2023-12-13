@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -28,11 +24,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const config = __importStar(require("./appSettings/config.json"));
-const commandLineParser_1 = require("./commandLineParser");
-const args = new commandLineParser_1.CommandLineParser(process.argv);
-console.log(args.WithNewDatabase);
+const mySQLDatabase_1 = require("./mySQLDatabase");
 const app = (0, express_1.default)();
 const port = config.server.port;
+(0, mySQLDatabase_1.ConnectDatabase)("localhost", "root", "Acv1235264852", 3306, "PWM");
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
