@@ -27,7 +27,7 @@ const config = __importStar(require("./appSettings/config.json"));
 const mySQLDatabase_1 = require("./mySQLDatabase");
 const app = (0, express_1.default)();
 const port = config.server.port;
-(0, mySQLDatabase_1.ConnectDatabase)("localhost", "root", "Acv1235264852", 3306, "PWM");
+(0, mySQLDatabase_1.ConnectDatabase)("localhost", "root", "**", 3306, "**");
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
