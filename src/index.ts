@@ -7,7 +7,9 @@ import {CommandLineParser} from "./commandLineParser"
 const app = express();
 const port = config.server.port;
 
-ConnectDatabase("localhost","root","***",3306,"***");
+const commands = new CommandLineParser(process.argv.slice(2))
+
+ConnectDatabase(commands.DatabaseUrl,commands.DatabaseUser,commands.DatabasePassword,commands.DatabasePort,commands.DatabaseName);
 
 
 

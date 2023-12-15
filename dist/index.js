@@ -25,9 +25,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const config = __importStar(require("./appSettings/config.json"));
 const mySQLDatabase_1 = require("./mySQLDatabase");
+const commandLineParser_1 = require("./commandLineParser");
 const app = (0, express_1.default)();
 const port = config.server.port;
-(0, mySQLDatabase_1.ConnectDatabase)("localhost", "root", "**", 3306, "**");
+const commands = new commandLineParser_1.CommandLineParser(process.argv.slice(2));
+(0, mySQLDatabase_1.ConnectDatabase)(commands.DatabaseUrl, commands.DatabaseUser, commands.DatabasePassword, commands.DatabasePort, commands.DatabaseName);
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

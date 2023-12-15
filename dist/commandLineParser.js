@@ -3,32 +3,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommandLineParser = void 0;
 class CommandLineParser {
     constructor(args) {
-        this.WithNewDatabase = false;
-        this.NewDatabase = "";
-        this.ConnectExistingDatabase = false;
+        this.DatabaseName = "";
         this.DatabaseUrl = "";
         this.DatabaseUser = "";
         this.DatabasePassword = "";
+        this.DatabasePort = 0;
         const argv = require('minimist')(process.argv.slice(2));
-        if (argv.n) {
-            this.WithNewDatabase = argv.n;
-            this.NewDatabase = argv.nd;
-            this.DatabaseUrl = argv.edu;
-            this.DatabaseUser = argv.edus;
-            this.DatabasePassword = argv.edp;
-        }
-        else if (argv.c) {
-            this.ConnectExistingDatabase = argv.c;
-            this.DatabaseUrl = argv.edu;
-            this.DatabaseUser = argv.edus;
-            this.DatabasePassword = argv.edp;
-        }
-        else {
-            console.error('\x1b[31m%s\x1b[0m', "Missing parameters Please indicate whether you want to create a new database or connect an existing one");
-            if (this.WithNewDatabase === false
-                && this.ConnectExistingDatabase === false) {
-                process.exit(1);
+        this.DatabaseName = removeLeadingSpace(argv.n);
+        this.DatabaseUrl = removeLeadingSpace(argv.u);
+        this.DatabaseUser = removeLeadingSpace(argv.r);
+        this.DatabasePassword = removeLeadingSpace(argv.p);
+        this.DatabasePort = argv.g;
+        // Funktion zum Entfernen des führenden Leerzeichens
+        function removeLeadingSpace(str) {
+            if (str.charAt(0) === ' ') {
+                return str.slice(1);
             }
+            return str;
         }
     }
 }
